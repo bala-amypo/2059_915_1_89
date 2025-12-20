@@ -55,7 +55,7 @@ public class InvoiceServiceImpl {
         return invoice;
     }
 
-    public List<Invoice> getAllInvoices() {
+    public List<Invoice> getInvoicesByUser(Long userId) {
         return invoiceRepository.findAll();
     }
 }
