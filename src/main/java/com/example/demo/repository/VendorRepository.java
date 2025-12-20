@@ -1,5 +1,10 @@
 package com.example.demo.repository;
 
-public class VendorRepository {
-    
+import com.example.demo.model.Vendor;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface VendorRepository extends JpaRepository<Vendor, Long> {
+    // Basic CRUD sufficient for tests
 }
