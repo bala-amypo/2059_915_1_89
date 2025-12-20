@@ -1,10 +1,8 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Vendor;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.example.demo.entity.Vendor;
 
-@Repository
-public interface VendorRepository extends JpaRepository<Vendor, Long> {
-    // Basic CRUD sufficient for tests
+public interface VendorRepository {
+    Vendor findById(Long id);
+    Vendor save(Vendor vendor);
 }
