@@ -10,14 +10,12 @@ public class CategorizationRule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // ✅ ADDED to fix repository error
-    private String description;
-
     private String keyword;
     private String matchType;
     private int priority;
 
-    @ManyToOne
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "category_id", nullable = true)
     private Category category;
 
     private LocalDateTime createdAt;
@@ -27,53 +25,20 @@ public class CategorizationRule {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ---------- Getters & Setters ----------
+    // getters & setters
+    public Long getId() { return id; }
 
-    public Long getId() {
-        return id;
-    }
+    public String getKeyword() { return keyword; }
+    public void setKeyword(String keyword) { this.keyword = keyword; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getMatchType() { return matchType; }
+    public void setMatchType(String matchType) { this.matchType = matchType; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public int getPriority() { return priority; }
+    public void setPriority(int priority) { this.priority = priority; }
 
-    public String getKeyword() {
-        return keyword;
-    }
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
-    public String getMatchType() {
-        return matchType;
-    }
-
-    public void setMatchType(String matchType) {
-        this.matchType = matchType;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 }
