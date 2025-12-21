@@ -16,14 +16,9 @@ public class CategorizationRuleServiceImpl {
     }
 
     public CategorizationRule createRule(CategorizationRule rule) {
-        // 🚨 SAFETY: avoid null crash
-        if (rule.getKeyword() == null || rule.getKeyword().isBlank()) {
-            throw new IllegalArgumentException("Keyword is required");
-        }
         return ruleRepository.save(rule);
     }
 
-    // ✅ REQUIRED for GET /api/rules
     public List<CategorizationRule> getAllRules() {
         return ruleRepository.findAll();
     }

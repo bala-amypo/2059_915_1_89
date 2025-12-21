@@ -17,13 +17,11 @@ public class CategorizationRuleController {
         this.ruleService = ruleService;
     }
 
-    // ✅ GET all rules (THIS FIXES YOUR 500)
     @GetMapping
     public List<CategorizationRule> getAllRules() {
         return ruleService.getAllRules();
     }
 
-    // ✅ POST create rule
     @PostMapping
     public CategorizationRule createRule(@RequestBody CategorizationRule rule) {
         return ruleService.createRule(rule);
