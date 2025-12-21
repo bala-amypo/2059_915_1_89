@@ -5,6 +5,8 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl {
 
@@ -17,9 +19,14 @@ public class UserServiceImpl {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // ✅ ADD THIS METHOD
+    // ✅ ALREADY FIXED
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    // ✅ ADD THIS METHOD (THIS FIXES YOUR ERROR)
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }
