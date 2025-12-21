@@ -16,7 +16,7 @@
     <description>Smart Invoice Categorization API</description>
 
     <!-- ========================= -->
-    <!-- Spring Boot Parent (4.0) -->
+    <!-- Spring Boot Parent -->
     <!-- ========================= -->
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -44,7 +44,7 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- Spring Web (Controllers + Servlet support) -->
+        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -56,26 +56,20 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Hibernate / JPA API -->
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-        </dependency>
-
         <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- Servlet API (Tomcat / Jakarta) -->
+        <!-- Jakarta Servlet API -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- In-memory DB (optional, safe for runtime) -->
+        <!-- H2 Database (runtime only) -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -86,13 +80,12 @@
         <!-- TEST DEPENDENCIES -->
         <!-- ========================= -->
 
-        <!-- Spring Boot Test (WITHOUT JUnit) -->
+        <!-- Spring Boot Test (JUnit removed) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
             <exclusions>
-                <!-- Remove JUnit completely -->
                 <exclusion>
                     <groupId>org.junit.jupiter</groupId>
                     <artifactId>junit-jupiter</artifactId>
@@ -119,37 +112,27 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Mockito + TestNG support -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-testng</artifactId>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <!-- ========================= -->
-    <!-- Build Configuration -->
+    <!-- Build Plugins -->
     <!-- ========================= -->
     <build>
         <plugins>
 
-            <!-- Spring Boot Maven Plugin -->
+            <!-- Spring Boot Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- Maven Surefire Plugin (TestNG) -->
+            <!-- Maven Surefire for TestNG -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
                     <useModulePath>false</useModulePath>
-                    <suiteXmlFiles>
-                        <!-- Hidden tests will still run -->
-                    </suiteXmlFiles>
                 </configuration>
             </plugin>
 
