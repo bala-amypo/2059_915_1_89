@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +11,7 @@ public class Category {
     private Long id;
 
     private String categoryName;
+
     private LocalDateTime createdAt;
 
     @PrePersist
@@ -18,12 +19,25 @@ public class Category {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters & Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // ---------- Getters & Setters ----------
 
-    public String getCategoryName() { return categoryName; }
-    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public String getCategoryName() {
+        return categoryName;
+    }
+    
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }
