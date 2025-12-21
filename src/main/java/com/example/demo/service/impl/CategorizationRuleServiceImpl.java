@@ -1,10 +1,11 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.CategorizationRule;
-import com.example.demo.model.Category;
 import com.example.demo.repository.CategorizationRuleRepository;
 import com.example.demo.repository.CategoryRepository;
+import org.springframework.stereotype.Service;
 
+@Service   // ✅ REQUIRED so Spring can create the bean
 public class CategorizationRuleServiceImpl {
 
     private final CategorizationRuleRepository ruleRepository;
