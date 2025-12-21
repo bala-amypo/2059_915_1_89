@@ -10,6 +10,6 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 
     List<Invoice> findByUploadedBy(User user);
 
-    // HQL-based method (mocked in tests, no implementation needed)
-    List<Invoice> findByAmountGreaterThanHql(Double amount);
+    // ✅ Correct Spring Data JPA method
+    List<Invoice> findByAmountGreaterThan(Double amount);
 }
