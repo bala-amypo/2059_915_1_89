@@ -15,12 +15,11 @@ public class VendorServiceImpl {
         this.vendorRepository = vendorRepository;
     }
 
-    public Vendor createVendor(Vendor vendor) {
-        return vendorRepository.save(vendor);
-    }
-
-    // ✅ REQUIRED for GET /api/vendors
     public List<Vendor> getAllVendors() {
         return vendorRepository.findAll();
+    }
+
+    public Vendor createVendor(Vendor vendor) {
+        return vendorRepository.save(vendor);
     }
 }
