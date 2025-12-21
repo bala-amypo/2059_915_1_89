@@ -1,3 +1,11 @@
+package com.example.demo.controller;
+
+import com.example.demo.model.CategorizationRule;
+import com.example.demo.service.impl.CategorizationRuleServiceImpl;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/rules")
 @CrossOrigin
