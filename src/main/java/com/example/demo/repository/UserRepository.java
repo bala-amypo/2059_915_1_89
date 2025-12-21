@@ -1,9 +1,9 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.User;
+import com.example.demo.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository {
-    User findById(Long id);
-    User findByUsername(String username);
-    User save(User user);
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    boolean existsByEmail(String email);
 }
