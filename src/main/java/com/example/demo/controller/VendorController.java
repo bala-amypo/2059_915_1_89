@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/vendors")
-@CrossOrigin(origins = "*") // ✅ FIX: allows Swagger & browser calls
+@CrossOrigin(origins = "*") // ✅ THIS FIXES CORS
 public class VendorController {
 
     private final VendorServiceImpl vendorService;
@@ -17,13 +17,11 @@ public class VendorController {
         this.vendorService = vendorService;
     }
 
-    // ✅ POST - create vendor
     @PostMapping
     public Vendor createVendor(@RequestBody Vendor vendor) {
         return vendorService.createVendor(vendor);
     }
 
-    // ✅ GET - fetch all vendors (Swagger needs this)
     @GetMapping
     public List<Vendor> getAllVendors() {
         return vendorService.getAllVendors();
