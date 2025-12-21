@@ -4,6 +4,5 @@ import com.example.demo.model.User;
 
 public interface UserService {
 
-    // Register new user
     User registerUser(User user);
 }
