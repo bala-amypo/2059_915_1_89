@@ -4,7 +4,9 @@ import com.example.demo.model.Vendor;
 import com.example.demo.repository.VendorRepository;
 import org.springframework.stereotype.Service;
 
-@Service   // ✅ REQUIRED so Spring can detect this class
+import java.util.List;
+
+@Service
 public class VendorServiceImpl {
 
     private final VendorRepository vendorRepository;
@@ -15,5 +17,10 @@ public class VendorServiceImpl {
 
     public Vendor createVendor(Vendor vendor) {
         return vendorRepository.save(vendor);
+    }
+
+    // ✅ THIS METHOD WAS MISSING
+    public List<Vendor> getAllVendors() {
+        return vendorRepository.findAll();
     }
 }
