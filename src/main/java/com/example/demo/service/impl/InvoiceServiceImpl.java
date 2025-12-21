@@ -4,14 +4,16 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Invoice;
 import com.example.demo.model.User;
 import com.example.demo.model.Vendor;
+import com.example.demo.repository.CategorizationRuleRepository;
 import com.example.demo.repository.InvoiceRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.VendorRepository;
-import com.example.demo.repository.CategorizationRuleRepository;
 import com.example.demo.util.InvoiceCategorizationEngine;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service   // ✅ REQUIRED so Spring can create this bean
 public class InvoiceServiceImpl {
 
     private final InvoiceRepository invoiceRepository;
@@ -44,7 +46,7 @@ public class InvoiceServiceImpl {
 
         invoice.setUploadedBy(user);
         invoice.setVendor(vendor);
-        invoice.setCategory(null); // IMPORTANT: test expects null
+        invoice.setCategory(null); // IMPORTANT: tests expect null
 
         return invoiceRepository.save(invoice);
     }
