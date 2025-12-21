@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/vendors")
+@CrossOrigin(origins = "*") // ✅ helps Swagger
 public class VendorController {
 
     private final VendorServiceImpl vendorService;
@@ -17,13 +18,13 @@ public class VendorController {
     }
 
     // ✅ GET all vendors
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public List<Vendor> getAllVendors() {
         return vendorService.getAllVendors();
     }
 
-    // ✅ CREATE vendor
-    @PostMapping
+    // ✅ CREATE vendor (POST must include body!)
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public Vendor createVendor(@RequestBody Vendor vendor) {
         return vendorService.createVendor(vendor);
     }
