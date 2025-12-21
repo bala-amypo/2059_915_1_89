@@ -1,8 +1,3 @@
-package com.example.demo.model;
-
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
-
 @Entity
 public class CategorizationRule {
 
@@ -14,8 +9,7 @@ public class CategorizationRule {
     private String matchType;
     private int priority;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "category_id", nullable = true)
+    @ManyToOne
     private Category category;
 
     private LocalDateTime createdAt;
@@ -26,19 +20,4 @@ public class CategorizationRule {
     }
 
     // getters & setters
-    public Long getId() { return id; }
-
-    public String getKeyword() { return keyword; }
-    public void setKeyword(String keyword) { this.keyword = keyword; }
-
-    public String getMatchType() { return matchType; }
-    public void setMatchType(String matchType) { this.matchType = matchType; }
-
-    public int getPriority() { return priority; }
-    public void setPriority(int priority) { this.priority = priority; }
-
-    public Category getCategory() { return category; }
-    public void setCategory(Category category) { this.category = category; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
 }

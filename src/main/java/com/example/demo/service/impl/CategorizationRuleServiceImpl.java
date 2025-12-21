@@ -1,25 +1,17 @@
-package com.example.demo.service.impl;
-
-import com.example.demo.model.CategorizationRule;
-import com.example.demo.repository.CategorizationRuleRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 @Service
 public class CategorizationRuleServiceImpl {
 
-    private final CategorizationRuleRepository ruleRepository;
+    private final CategorizationRuleRepository repository;
 
-    public CategorizationRuleServiceImpl(CategorizationRuleRepository ruleRepository) {
-        this.ruleRepository = ruleRepository;
+    public CategorizationRuleServiceImpl(CategorizationRuleRepository repository) {
+        this.repository = repository;
     }
 
     public CategorizationRule createRule(CategorizationRule rule) {
-        return ruleRepository.save(rule);
+        return repository.save(rule);
     }
 
     public List<CategorizationRule> getAllRules() {
-        return ruleRepository.findAll();
+        return repository.findAll();
     }
 }
