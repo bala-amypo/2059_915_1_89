@@ -19,7 +19,7 @@ public class VendorServiceImpl {
         return vendorRepository.save(vendor);
     }
 
-    // ✅ ADD THIS METHOD
+    // ✅ REQUIRED for GET /api/vendors
     public List<Vendor> getAllVendors() {
         return vendorRepository.findAll();
     }

@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/vendors")
-@CrossOrigin(origins = "*")
 public class VendorController {
 
     private final VendorServiceImpl vendorService;
