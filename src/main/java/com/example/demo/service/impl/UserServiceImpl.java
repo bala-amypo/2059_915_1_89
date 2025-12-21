@@ -19,13 +19,18 @@ public class UserServiceImpl {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // ✅ ALREADY FIXED
+    // ✅ REGISTER USER
     public User registerUser(User user) {
+
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
-    // ✅ ADD THIS METHOD (THIS FIXES YOUR ERROR)
+    // ✅ USED BY USER CONTROLLER
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }

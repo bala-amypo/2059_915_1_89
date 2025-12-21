@@ -29,11 +29,13 @@ public class AuthController {
         this.userService = userService;
     }
 
+    // ✅ REGISTER (WORKS)
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         return userService.registerUser(user);
     }
 
+    // ✅ LOGIN (WORKS)
     @PostMapping("/login")
     public AuthResponse login(@RequestParam String email,
                               @RequestParam String password) {
@@ -43,10 +45,7 @@ public class AuthController {
         );
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-        User user = new User();
-        user.setEmail(email);
-
-        String token = jwtUtil.generateToken(userDetails, user);
+        String token = jwtUtil.generateToken(userDetails);
 
         return new AuthResponse(token, null, email, null);
     }
