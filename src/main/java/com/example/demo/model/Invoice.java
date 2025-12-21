@@ -40,7 +40,7 @@ public class Invoice {
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,7 +48,7 @@ public class Invoice {
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
-    
+
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
     }
@@ -56,7 +56,7 @@ public class Invoice {
     public Double getAmount() {
         return amount;
     }
-    
+
     public void setAmount(Double amount) {
         this.amount = amount;
     }
@@ -64,7 +64,7 @@ public class Invoice {
     public LocalDate getInvoiceDate() {
         return invoiceDate;
     }
-    
+
     public void setInvoiceDate(LocalDate invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
@@ -72,7 +72,7 @@ public class Invoice {
     public String getDescription() {
         return description;
     }
-    
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -80,7 +80,7 @@ public class Invoice {
     public Vendor getVendor() {
         return vendor;
     }
-    
+
     public void setVendor(Vendor vendor) {
         this.vendor = vendor;
     }
@@ -88,7 +88,7 @@ public class Invoice {
     public Category getCategory() {
         return category;
     }
-    
+
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -96,12 +96,17 @@ public class Invoice {
     public User getUploadedBy() {
         return uploadedBy;
     }
-    
+
     public void setUploadedBy(User uploadedBy) {
         this.uploadedBy = uploadedBy;
     }
 
     public LocalDateTime getUploadedAt() {
         return uploadedAt;
+    }
+
+    // 🔴 THIS WAS MISSING – NOW FIXED
+    public void setUploadedAt(LocalDateTime uploadedAt) {
+        this.uploadedAt = uploadedAt;
     }
 }
