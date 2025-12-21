@@ -16,7 +16,7 @@ public class CategorizationRuleController {
     }
 
     @PostMapping
-    public CategorizationRule createRule(@RequestBody CategorizationRule rule) {
+    public CategorizationRule create(@RequestBody CategorizationRule rule) {
         return ruleService.createRule(rule);
     }
 }
