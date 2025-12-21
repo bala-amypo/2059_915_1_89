@@ -17,13 +17,13 @@ public class CategorizationRuleController {
         this.ruleService = ruleService;
     }
 
-    @GetMapping
-    public List<CategorizationRule> getAllRules() {
-        return ruleService.getAllRules();
-    }
-
     @PostMapping
     public CategorizationRule createRule(@RequestBody CategorizationRule rule) {
         return ruleService.createRule(rule);
+    }
+
+    @GetMapping
+    public List<CategorizationRule> getAllRules() {
+        return ruleService.getAllRules();
     }
 }
