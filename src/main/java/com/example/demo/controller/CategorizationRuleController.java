@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/rules")
+@CrossOrigin(origins = "https://9429.pro604cr.amypo.ai", allowCredentials = "true")
 public class CategorizationRuleController {
 
     private final CategorizationRuleServiceImpl ruleService;
