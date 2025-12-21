@@ -10,6 +10,9 @@ public class CategorizationRule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // ✅ ADDED to fix repository error
+    private String description;
+
     private String keyword;
     private String matchType;
     private int priority;
@@ -30,10 +33,18 @@ public class CategorizationRule {
         return id;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getKeyword() {
         return keyword;
     }
-    
+
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
@@ -41,7 +52,7 @@ public class CategorizationRule {
     public String getMatchType() {
         return matchType;
     }
-    
+
     public void setMatchType(String matchType) {
         this.matchType = matchType;
     }
@@ -49,7 +60,7 @@ public class CategorizationRule {
     public int getPriority() {
         return priority;
     }
-    
+
     public void setPriority(int priority) {
         this.priority = priority;
     }
@@ -57,7 +68,7 @@ public class CategorizationRule {
     public Category getCategory() {
         return category;
     }
-    
+
     public void setCategory(Category category) {
         this.category = category;
     }
