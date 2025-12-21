@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Invoice;
+import com.example.demo.model.Invoice;
 import com.example.demo.service.impl.InvoiceServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +17,9 @@ public class InvoiceController {
     }
 
     @PostMapping("/upload")
-    public Invoice uploadInvoice(
-            @RequestParam Long userId,
-            @RequestParam Long vendorId,
-            @RequestBody Invoice invoice) {
-
+    public Invoice uploadInvoice(@RequestParam Long userId,
+                                 @RequestParam Long vendorId,
+                                 @RequestBody Invoice invoice) {
         return invoiceService.uploadInvoice(userId, vendorId, invoice);
     }
 

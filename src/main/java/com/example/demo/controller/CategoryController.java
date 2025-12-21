@@ -1,21 +1,21 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Category;
-import com.example.demo.repository.CategoryRepository;
+import com.example.demo.model.Category;
+import com.example.demo.service.impl.CategoryServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
 
-    private final CategoryRepository categoryRepository;
+    private final CategoryServiceImpl categoryService;
 
-    public CategoryController(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public CategoryController(CategoryServiceImpl categoryService) {
+        this.categoryService = categoryService;
     }
 
     @PostMapping
     public Category createCategory(@RequestBody Category category) {
-        return categoryRepository.save(category);
+        return categoryService.createCategory(category);
     }
 }

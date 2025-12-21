@@ -14,21 +14,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private final UserServiceImpl userService;
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
+    private final UserServiceImpl userService;
 
-    public AuthController(
-            UserServiceImpl userService,
-            AuthenticationManager authenticationManager,
-            UserDetailsService userDetailsService,
-            JwtUtil jwtUtil) {
-
-        this.userService = userService;
+    public AuthController(AuthenticationManager authenticationManager,
+                          UserDetailsService userDetailsService,
+                          JwtUtil jwtUtil,
+                          UserServiceImpl userService) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
+        this.userService = userService;
     }
 
     @PostMapping("/register")
@@ -45,15 +43,11 @@ public class AuthController {
         );
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-
-        // Dummy user object (test-oriented)
         User user = new User();
         user.setEmail(email);
-        user.setRole("USER");
-        user.setId(1L);
 
         String token = jwtUtil.generateToken(userDetails, user);
 
-        return new AuthResponse(token, user.getId(), user.getEmail(), user.getRole());
+        return new AuthResponse(token, null, email, null);
     }
 }
