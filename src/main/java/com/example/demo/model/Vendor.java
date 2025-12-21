@@ -10,8 +10,14 @@ public class Vendor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "vendor_name", nullable = false)
+    @Column(nullable = false)
     private String vendorName;
+
+    public Vendor() {}
+
+    public Vendor(String vendorName) {
+        this.vendorName = vendorName;
+    }
 
     public Long getId() {
         return id;
