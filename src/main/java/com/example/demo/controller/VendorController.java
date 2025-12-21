@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/vendors")
-@CrossOrigin(origins = "*") // ✅ THIS FIXES CORS
+@CrossOrigin(origins = "*")
 public class VendorController {
 
     private final VendorServiceImpl vendorService;
@@ -17,13 +17,15 @@ public class VendorController {
         this.vendorService = vendorService;
     }
 
-    @PostMapping
-    public Vendor createVendor(@RequestBody Vendor vendor) {
-        return vendorService.createVendor(vendor);
-    }
-
+    // ✅ GET all vendors
     @GetMapping
     public List<Vendor> getAllVendors() {
         return vendorService.getAllVendors();
+    }
+
+    // ✅ CREATE vendor
+    @PostMapping
+    public Vendor createVendor(@RequestBody Vendor vendor) {
+        return vendorService.createVendor(vendor);
     }
 }
