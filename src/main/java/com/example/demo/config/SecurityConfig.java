@@ -30,9 +30,12 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                         "/api/auth/**",
+                        "/api/vendors/**",
+                        "/api/invoices/**",
                         "/v3/api-docs/**",
                         "/swagger-ui/**",
-                        "/swagger-ui.html"
+                        "/swagger-ui.html",
+                        "/h2-console/**"
                 ).permitAll()
                 .anyRequest().permitAll()
             );
@@ -45,9 +48,10 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        // ✅ EXACT ORIGIN THAT CALLS THE API
+        // ✅ Allow your preview domain + localhost
         config.setAllowedOrigins(List.of(
-                "https://9070.pro604cr.amypo.ai"
+                "https://9070.pro604cr.amypo.ai",
+                "http://localhost:9001"
         ));
 
         config.setAllowedMethods(List.of(
