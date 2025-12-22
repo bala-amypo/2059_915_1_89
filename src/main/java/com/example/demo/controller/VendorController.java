@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/vendors")
-@CrossOrigin(origins = "https://9429.pro604cr.amypo.ai", allowCredentials = "true")
 public class VendorController {
 
     private final VendorServiceImpl vendorService;
@@ -17,11 +16,19 @@ public class VendorController {
         this.vendorService = vendorService;
     }
 
+    // ✅ WORKS on preview URL (GET is allowed)
     @GetMapping
     public List<Vendor> getAllVendors() {
         return vendorService.getAllVendors();
     }
 
+    // ✅ DEMO ENDPOINT (VERY IMPORTANT FOR PRESENTATION)
+    @GetMapping("/test")
+    public String testVendorApi() {
+        return "Vendor API is running successfully";
+    }
+
+    // ❌ POST WILL NOT WORK on amypo.ai (but KEEP it for project completeness)
     @PostMapping
     public Vendor createVendor(@RequestBody Vendor vendor) {
         return vendorService.createVendor(vendor);
