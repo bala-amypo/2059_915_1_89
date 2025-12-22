@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -17,12 +18,18 @@ public class User {
     private Long id;
 
     private String email;
+
+    // 🔒 NEVER expose password in API response
+    @JsonIgnore
     private String password;
+
     private String role;
 
     private LocalDateTime createdAt;
 
-    @ManyToMany
+    // 🚫 FIX lazy loading JSON error
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Vendor> favoriteVendors = new HashSet<>();
 
     @PrePersist
@@ -44,6 +51,7 @@ public class User {
         this.email = email;
     }
 
+    // password getter optional (used internally only)
     public String getPassword() {
         return password;
     }
@@ -64,6 +72,7 @@ public class User {
         return createdAt;
     }
 
+    // 🚫 Do NOT serialize favoriteVendors
     public Set<Vendor> getFavoriteVendors() {
         return favoriteVendors;
     }
