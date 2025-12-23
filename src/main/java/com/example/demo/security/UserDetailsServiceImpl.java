@@ -30,8 +30,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
-                .password(user.getPassword()) // ✅ BCrypt encoded
-                .roles(user.getRole())        // ✅ USER / ADMIN
+                .password(user.getPassword()) 
+                .roles(user.getRole())        
                 .build();
     }
 }
