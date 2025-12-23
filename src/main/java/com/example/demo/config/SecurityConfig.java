@@ -29,10 +29,12 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
+                        "/api/auth/**",
+                        "/api/vendors/**",
+                        "/api/invoices/**",
                         "/v3/api-docs/**",
                         "/swagger-ui/**",
                         "/swagger-ui.html",
-                        "/api/**",
                         "/h2-console/**"
                 ).permitAll()
                 .anyRequest().permitAll()
@@ -46,11 +48,10 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        // ✅ ALLOW SWAGGER (9074) TO CALL API (9001)
-        config.setAllowedOriginPatterns(List.of(
-                "https://9074.408procr.amypo.ai",
-                "https://9001.408procr.amypo.ai",
-                "http://localhost:*"
+        // ✅ Allow your preview domain + localhost
+        config.setAllowedOrigins(List.of(
+                "https://9070.pro604cr.amypo.ai",
+                "http://localhost:9001"
         ));
 
         config.setAllowedMethods(List.of(
@@ -58,17 +59,11 @@ public class SecurityConfig {
         ));
 
         config.setAllowedHeaders(List.of("*"));
-
-        // ❌ MUST BE FALSE for cross-origin Swagger
-        config.setAllowCredentials(false);
+        config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
-
-        // ✅ VERY IMPORTANT — allow api-docs explicitly
-        source.registerCorsConfiguration("/v3/api-docs/**", config);
-        source.registerCorsConfiguration("/swagger-ui/**", config);
-        source.registerCorsConfiguration("/api/**", config);
+        source.registerCorsConfiguration("/**", config);
 
         return source;
     }
