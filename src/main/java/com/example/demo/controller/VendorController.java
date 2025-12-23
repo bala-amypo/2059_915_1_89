@@ -1,11 +1,3 @@
-package com.example.demo.controller;
-
-import com.example.demo.model.Vendor;
-import com.example.demo.service.impl.VendorServiceImpl;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/vendors")
 public class VendorController {
@@ -16,21 +8,28 @@ public class VendorController {
         this.vendorService = vendorService;
     }
 
-    // ✅ WORKS on preview URL (GET is allowed)
+    // ✅ GET all vendors
     @GetMapping
     public List<Vendor> getAllVendors() {
         return vendorService.getAllVendors();
     }
 
-    // ✅ DEMO ENDPOINT (VERY IMPORTANT FOR PRESENTATION)
+    // ✅ Health check
     @GetMapping("/test")
     public String testVendorApi() {
         return "Vendor API is running successfully";
     }
 
-    // ❌ POST WILL NOT WORK on amypo.ai (but KEEP it for project completeness)
+    // ❌ POST (kept for completeness, blocked on amypo.ai)
     @PostMapping
     public Vendor createVendor(@RequestBody Vendor vendor) {
+        return vendorService.createVendor(vendor);
+    }
+
+    // ✅ DEMO endpoint to simulate POST
+    @GetMapping("/post-test")
+    public Vendor createVendorUsingGet() {
+        Vendor vendor = new Vendor("Amazon");
         return vendorService.createVendor(vendor);
     }
 }
