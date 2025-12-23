@@ -44,7 +44,7 @@ public class AuthController {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
-        // ✅ FIXED generateToken call
+        
         String token = jwtUtil.generateToken(userDetails, email);
 
         return new AuthResponse(token, null, email, null);

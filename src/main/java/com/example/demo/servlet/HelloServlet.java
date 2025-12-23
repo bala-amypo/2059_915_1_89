@@ -8,10 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Simple Hello Servlet
- * Used to demonstrate Servlet + Tomcat concepts
- */
+
 @WebServlet(urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
 

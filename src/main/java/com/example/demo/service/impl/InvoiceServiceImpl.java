@@ -41,8 +41,8 @@ public class InvoiceServiceImpl {
 
         invoice.setUploadedBy(user);
         invoice.setVendor(vendor);
-        invoice.setCategory(null);              // REQUIRED
-        invoice.setUploadedAt(LocalDateTime.now()); // 🔥 THIS FIXES MANY 500s
+        invoice.setCategory(null);              
+        invoice.setUploadedAt(LocalDateTime.now()); 
 
         return invoiceRepository.save(invoice);
     }
