@@ -29,9 +29,7 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                        "/api/auth/**",
-                        "/api/vendors/**",
-                        "/api/invoices/**",
+                        "/api/**",
                         "/v3/api-docs/**",
                         "/swagger-ui/**",
                         "/swagger-ui.html",
@@ -48,9 +46,9 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        // ✅ Allow your preview domain + localhost
+        // ✅ EXACT domain you are calling from
         config.setAllowedOrigins(List.of(
-                "https://9070.pro604cr.amypo.ai",
+                "http://9074.408procr.amypo.ai",
                 "http://localhost:9001"
         ));
 
@@ -59,7 +57,9 @@ public class SecurityConfig {
         ));
 
         config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
+
+        // ✅ IMPORTANT: must be false unless using cookies/JWT in browser
+        config.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
