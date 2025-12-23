@@ -19,7 +19,7 @@ public class Category {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ---------- Getters & Setters ----------
+    
 
     public Long getId() {
         return id;

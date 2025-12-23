@@ -19,7 +19,7 @@ public class User {
 
     private String email;
 
-    // 🔒 NEVER expose password in API response
+    
     @JsonIgnore
     private String password;
 
@@ -27,7 +27,7 @@ public class User {
 
     private LocalDateTime createdAt;
 
-    // 🚫 FIX lazy loading JSON error
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Vendor> favoriteVendors = new HashSet<>();
@@ -37,7 +37,7 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    // -------- Getters & Setters --------
+    
 
     public Long getId() {
         return id;
@@ -51,7 +51,7 @@ public class User {
         this.email = email;
     }
 
-    // password getter optional (used internally only)
+    
     public String getPassword() {
         return password;
     }
@@ -72,7 +72,7 @@ public class User {
         return createdAt;
     }
 
-    // 🚫 Do NOT serialize favoriteVendors
+    
     public Set<Vendor> getFavoriteVendors() {
         return favoriteVendors;
     }

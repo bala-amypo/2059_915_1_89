@@ -4,7 +4,7 @@ import com.example.demo.model.Category;
 import com.example.demo.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
-@Service   // ✅ REQUIRED so Spring can create this bean
+@Service   
 public class CategoryServiceImpl {
 
     private final CategoryRepository categoryRepository;

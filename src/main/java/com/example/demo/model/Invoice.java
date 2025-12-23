@@ -35,7 +35,7 @@ public class Invoice {
         this.uploadedAt = LocalDateTime.now();
     }
 
-    // ---------- Getters & Setters ----------
+    
 
     public Long getId() {
         return id;
@@ -105,7 +105,7 @@ public class Invoice {
         return uploadedAt;
     }
 
-    // 🔴 THIS WAS MISSING – NOW FIXED
+    
     public void setUploadedAt(LocalDateTime uploadedAt) {
         this.uploadedAt = uploadedAt;
     }
