@@ -1,76 +1,76 @@
-package com.example.demo.security;
+// package com.example.demo.security;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.security.authentication.AuthenticationManager;
+// import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+// import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+// import org.springframework.security.config.http.SessionCreationPolicy;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.security.web.SecurityFilterChain;
+// import org.springframework.web.cors.CorsConfiguration;
+// import org.springframework.web.cors.CorsConfigurationSource;
+// import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.List;
+// import java.util.List;
 
-@Configuration
-public class SecurityConfig {
+// @Configuration
+// public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//     @Bean
+//     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers(
-                        "/api/**",
-                        "/v3/api-docs/**",
-                        "/swagger-ui/**",
-                        "/swagger-ui.html",
-                        "/h2-console/**"
-                ).permitAll()
-                .anyRequest().permitAll()
-            );
+//         http
+//             .csrf(csrf -> csrf.disable())
+//             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+//             .sessionManagement(session ->
+//                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//             )
+//             .authorizeHttpRequests(auth -> auth
+//                 .requestMatchers(
+//                         "/api/**",
+//                         "/v3/api-docs/**",
+//                         "/swagger-ui/**",
+//                         "/swagger-ui.html",
+//                         "/h2-console/**"
+//                 ).permitAll()
+//                 .anyRequest().permitAll()
+//             );
 
-        return http.build();
-    }
+//         return http.build();
+//     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+//     @Bean
+//     public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration config = new CorsConfiguration();
+//         CorsConfiguration config = new CorsConfiguration();
 
-        // ✅ SIMPLE & SAFE (same-origin usage)
-        config.setAllowedOriginPatterns(List.of("*"));
+//         // ✅ SIMPLE & SAFE (same-origin usage)
+//         config.setAllowedOriginPatterns(List.of("*"));
 
-        config.setAllowedMethods(List.of(
-                "GET", "POST", "PUT", "DELETE", "OPTIONS"
-        ));
+//         config.setAllowedMethods(List.of(
+//                 "GET", "POST", "PUT", "DELETE", "OPTIONS"
+//         ));
 
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(false);
+//         config.setAllowedHeaders(List.of("*"));
+//         config.setAllowCredentials(false);
 
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+//         UrlBasedCorsConfigurationSource source =
+//                 new UrlBasedCorsConfigurationSource();
+//         source.registerCorsConfiguration("/**", config);
 
-        return source;
-    }
+//         return source;
+//     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
-    }
+//     @Bean
+//     public AuthenticationManager authenticationManager(
+//             AuthenticationConfiguration configuration) throws Exception {
+//         return configuration.getAuthenticationManager();
+//     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-}
+//     @Bean
+//     public PasswordEncoder passwordEncoder() {
+//         return new BCryptPasswordEncoder();
+//     }
+// }
