@@ -49,13 +49,13 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Spring Security (needed for compilation only) -->
+        <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- Swagger / OpenAPI -->
+        <!-- Swagger / OpenAPI (Boot 3 compatible) -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -79,7 +79,7 @@
         <!-- TEST DEPENDENCIES -->
         <!-- ========================= -->
 
-        <!-- Spring Boot Test (EXCLUDE JUnit) -->
+        <!-- Spring Boot Test (exclude JUnit) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -119,13 +119,10 @@
     <build>
         <plugins>
 
-            <!-- Disable spring-boot:run -->
+            <!-- Spring Boot RUN ENABLED -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
 
             <!-- Surefire for TestNG -->
