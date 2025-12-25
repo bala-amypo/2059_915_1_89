@@ -36,7 +36,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         this.engine = null;
     }
 
-    // ✅ USED BY SPRING
+    // ✅ USED BY SPRING BOOT
     public InvoiceServiceImpl(
             InvoiceRepository invoiceRepo,
             UserRepository userRepo,

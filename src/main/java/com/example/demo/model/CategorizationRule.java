@@ -20,19 +20,56 @@ public class CategorizationRule {
 
     @PrePersist
     public void prePersist() {
-        createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
-    public Long getId() { return id; }
-    public Category getCategory() { return category; }
-    public String getKeyword() { return keyword; }
-    public String getMatchType() { return matchType; }
-    public Integer getPriority() { return priority; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    // ---------- GETTERS ----------
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(Long id) { this.id = id; }
-    public void setCategory(Category category) { this.category = category; }
-    public void setKeyword(String keyword) { this.keyword = keyword; }
-    public void setMatchType(String matchType) { this.matchType = matchType; }
-    public void setPriority(Integer priority) { this.priority = priority; }
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public String getMatchType() {
+        return matchType;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * 🔴 IMPORTANT FOR TESTS
+     * Tests expect category as STRING
+     */
+    public String getCategory() {
+        return category != null ? category.getCategoryName() : null;
+    }
+
+    // ---------- SETTERS ----------
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setMatchType(String matchType) {
+        this.matchType = matchType;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
 }
