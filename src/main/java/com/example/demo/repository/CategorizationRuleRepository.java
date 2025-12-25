@@ -12,7 +12,7 @@ public interface CategorizationRuleRepository
 
     @Query(
         "SELECT r FROM CategorizationRule r " +
-        "WHERE LOWER(:description) LIKE LOWER(CONCAT('%', r.keyword, '%'))"
+        "WHERE LOWER(:description) LIKE CONCAT('%', LOWER(r.keyword), '%')"
     )
     List<CategorizationRule> findMatchingRulesByDescription(
             @Param("description") String description
