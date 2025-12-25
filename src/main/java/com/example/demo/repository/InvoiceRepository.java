@@ -11,7 +11,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 
     List<Invoice> findByUploadedBy(User user);
 
-    // ⭐ REQUIRED BY TEST
+    // REQUIRED by tests
     @Query("SELECT i FROM Invoice i WHERE i.amount > :amount")
     List<Invoice> findByAmountGreaterThanHql(double amount);
 }
