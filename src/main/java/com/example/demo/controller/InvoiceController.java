@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Invoice;
 import com.example.demo.service.InvoiceService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,31 +17,13 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
-    // GET ALL INVOICES
     @GetMapping
-    public List<Invoice> getAllInvoices() {
-        return invoiceService.getAllInvoices();
+    public ResponseEntity<List<Invoice>> getAllInvoices() {
+        return ResponseEntity.ok(invoiceService.getAllInvoices());
     }
 
-    // GET INVOICE BY ID
     @GetMapping("/{id}")
-    public Invoice getInvoice(@PathVariable Long id) {
-        return invoiceService.getInvoice(id);
-    }
-
-    // GET INVOICES BY USER
-    @GetMapping("/user/{userId}")
-    public List<Invoice> getInvoicesByUser(@PathVariable Long userId) {
-        return invoiceService.getInvoicesByUser(userId);
-    }
-
-    // UPLOAD INVOICE
-    @PostMapping("/upload/{userId}/{vendorId}")
-    public Invoice uploadInvoice(
-            @PathVariable Long userId,
-            @PathVariable Long vendorId,
-            @RequestBody Invoice invoice
-    ) {
-        return invoiceService.uploadInvoice(userId, vendorId, invoice);
+    public ResponseEntity<Invoice> getInvoice(@PathVariable Long id) {
+        return ResponseEntity.ok(invoiceService.getInvoice(id));
     }
 }
