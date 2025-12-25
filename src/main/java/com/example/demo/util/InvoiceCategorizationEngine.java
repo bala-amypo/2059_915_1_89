@@ -7,29 +7,21 @@ import java.util.List;
 
 public class InvoiceCategorizationEngine {
 
-    /**
-     * THIS method is REQUIRED by tests
-     */
     public String determineCategory(
             Invoice invoice,
             List<CategorizationRule> rules
     ) {
-        if (invoice == null || rules == null) {
-            return "Uncategorized";
+        if (rules == null || rules.isEmpty()) {
+            return null;
         }
 
-        String description = invoice.getDescription();
-        if (description == null) {
-            return "Uncategorized";
-        }
+        String description = invoice.getDescription().toLowerCase();
 
-        for (CategorizationRule rule : rules) {
-            if (rule.getKeyword() != null &&
-                description.toLowerCase().contains(rule.getKeyword().toLowerCase())) {
-                return rule.getCategory();
-            }
-        }
-
-        return "Uncategorized";
+        return rules.stream()
+                .filter(r -> description.contains(r.getKeyword().toLowerCase()))
+                .sorted((a, b) -> b.getPriority() - a.getPriority())
+                .map(r -> r.getCategory().getCategoryName())
+                .findFirst()
+                .orElse(null);
     }
 }
