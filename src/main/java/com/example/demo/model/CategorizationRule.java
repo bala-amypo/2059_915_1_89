@@ -23,9 +23,14 @@ public class CategorizationRule {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ---------- GETTERS ----------
+    // ✅ GETTERS (MATCH TEST EXPECTATIONS)
+
     public Long getId() {
         return id;
+    }
+
+    public Category getCategory() {   // ✅ MUST RETURN Category
+        return category;
     }
 
     public String getKeyword() {
@@ -44,15 +49,8 @@ public class CategorizationRule {
         return createdAt;
     }
 
-    /**
-     * 🔴 IMPORTANT FOR TESTS
-     * Tests expect category as STRING
-     */
-    public String getCategory() {
-        return category != null ? category.getCategoryName() : null;
-    }
+    // ✅ SETTERS
 
-    // ---------- SETTERS ----------
     public void setId(Long id) {
         this.id = id;
     }
