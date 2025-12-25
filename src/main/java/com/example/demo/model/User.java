@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(
+    name = "users", // ✅ FIX: avoid reserved keyword "user"
     uniqueConstraints = @UniqueConstraint(columnNames = "email")
 )
 public class User {
@@ -22,6 +23,11 @@ public class User {
     private LocalDateTime createdAt;
 
     @ManyToMany
+    @JoinTable(
+        name = "user_favorite_vendors", // ✅ explicit join table
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "vendor_id")
+    )
     private Set<Vendor> favoriteVendors = new HashSet<>();
 
     @PrePersist
@@ -29,7 +35,7 @@ public class User {
         createdAt = LocalDateTime.now();
     }
 
-    // getters & setters
+    // ===== GETTERS & SETTERS =====
     public Long getId() { return id; }
     public String getEmail() { return email; }
     public String getPassword() { return password; }
