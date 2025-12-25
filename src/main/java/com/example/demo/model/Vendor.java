@@ -1,15 +1,10 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(
-    name = "vendors",
-    uniqueConstraints = @UniqueConstraint(columnNames = "vendorName")
-)
 public class Vendor {
 
     @Id
@@ -17,17 +12,14 @@ public class Vendor {
     private Long id;
 
     private String vendorName;
-    private String contactEmail;
-    private String address;
-    private LocalDateTime createdAt;
 
     @ManyToMany(mappedBy = "favoriteVendors")
     private Set<User> users = new HashSet<>();
 
-    @PrePersist
-    public void prePersist() {
-        createdAt = LocalDateTime.now();
-    }
+    public Long getId() { return id; }
+    public String getVendorName() { return vendorName; }
+    public Set<User> getUsers() { return users; }
 
-    // getters & setters
+    public void setId(Long id) { this.id = id; }
+    public void setVendorName(String vendorName) { this.vendorName = vendorName; }
 }

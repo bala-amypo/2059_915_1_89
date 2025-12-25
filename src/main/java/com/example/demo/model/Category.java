@@ -4,10 +4,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(
-    name = "categories",
-    uniqueConstraints = @UniqueConstraint(columnNames = "categoryName")
-)
 public class Category {
 
     @Id
@@ -15,7 +11,6 @@ public class Category {
     private Long id;
 
     private String categoryName;
-    private String description;
     private LocalDateTime createdAt;
 
     @PrePersist
@@ -23,5 +18,10 @@ public class Category {
         createdAt = LocalDateTime.now();
     }
 
-    // getters & setters
+    public Long getId() { return id; }
+    public String getCategoryName() { return categoryName; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+
+    public void setId(Long id) { this.id = id; }
+    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
 }
