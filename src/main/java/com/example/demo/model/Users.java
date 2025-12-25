@@ -10,7 +10,7 @@ import java.util.Set;
     name = "users", // ✅ FIX: avoid reserved keyword "user"
     uniqueConstraints = @UniqueConstraint(columnNames = "email")
 )
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

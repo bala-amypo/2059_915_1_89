@@ -10,7 +10,7 @@ import java.util.List;
 public interface CategorizationRuleRepository
         extends JpaRepository<CategorizationRule, Long> {
 
-    // ✅ VALID JPQL (PASSED BY TESTS)
+    // ✅ VALID JPQL
     @Query("""
         SELECT r
         FROM CategorizationRule r
