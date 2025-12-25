@@ -11,7 +11,6 @@ public class Category {
     private Long id;
 
     private String categoryName;
-
     private LocalDateTime createdAt;
 
     @PrePersist
@@ -19,7 +18,6 @@ public class Category {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ===== GETTERS (tests expect these) =====
     public Long getId() {
         return id;
     }
@@ -32,7 +30,6 @@ public class Category {
         return createdAt;
     }
 
-    // ===== SETTERS =====
     public void setId(Long id) {
         this.id = id;
     }

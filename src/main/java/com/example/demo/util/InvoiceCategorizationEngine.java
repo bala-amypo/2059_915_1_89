@@ -13,7 +13,7 @@ public class InvoiceCategorizationEngine {
             Invoice invoice,
             List<CategorizationRule> rules
     ) {
-        if (invoice == null || rules == null || rules.isEmpty()) {
+        if (invoice == null || rules == null) {
             return null;
         }
 
@@ -26,12 +26,13 @@ public class InvoiceCategorizationEngine {
     }
 
     private boolean matches(String description, CategorizationRule rule) {
-        if (description == null || rule.getKeyword() == null) return false;
+        if (description == null || rule.getKeyword() == null) {
+            return false;
+        }
 
         return switch (rule.getMatchType()) {
             case "EXACT" -> description.equals(rule.getKeyword());
-            case "CONTAINS" ->
-                    description.toLowerCase().contains(rule.getKeyword().toLowerCase());
+            case "CONTAINS" -> description.toLowerCase().contains(rule.getKeyword().toLowerCase());
             case "REGEX" -> description.matches(rule.getKeyword());
             default -> false;
         };
