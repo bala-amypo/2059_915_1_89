@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Invoice;
 import com.example.demo.model.User;
 import com.example.demo.model.Vendor;
@@ -18,7 +19,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final UserRepository userRepo;
     private final VendorRepository vendorRepo;
 
-    // ✅ REQUIRED BY TESTS
+    // ✅ EXACT constructor expected by tests
     public InvoiceServiceImpl(
             InvoiceRepository invoiceRepo,
             UserRepository userRepo,
@@ -36,8 +37,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Invoice uploadInvoice(Long userId, Long vendorId, Invoice invoice) {
-        User user = userRepo.findById(userId).orElseThrow();
-        Vendor vendor = vendorRepo.findById(vendorId).orElseThrow();
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        Vendor vendor = vendorRepo.findById(vendorId)
+                .orElseThrow(() -> new ResourceNotFoundException("Vendor not found"));
 
         invoice.setUploadedBy(user);
         invoice.setVendor(vendor);
@@ -47,12 +51,15 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Invoice getInvoice(Long id) {
-        return invoiceRepo.findById(id).orElseThrow();
+        return invoiceRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Invoice not found"));
     }
 
     @Override
     public List<Invoice> getInvoicesByUser(Long userId) {
-        User user = userRepo.findById(userId).orElseThrow();
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
         return invoiceRepo.findByUploadedBy(user);
     }
 }
