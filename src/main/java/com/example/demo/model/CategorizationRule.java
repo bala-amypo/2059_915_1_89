@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class CategorizationRule {
@@ -16,20 +15,12 @@ public class CategorizationRule {
     private String keyword;
     private String matchType;
     private Integer priority;
-    private LocalDateTime createdAt;
-
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    // ✅ GETTERS (MATCH TEST EXPECTATIONS)
 
     public Long getId() {
         return id;
     }
 
-    public Category getCategory() {   // ✅ MUST RETURN Category
+    public Category getCategory() {
         return category;
     }
 
@@ -44,12 +35,6 @@ public class CategorizationRule {
     public Integer getPriority() {
         return priority;
     }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    // ✅ SETTERS
 
     public void setId(Long id) {
         this.id = id;

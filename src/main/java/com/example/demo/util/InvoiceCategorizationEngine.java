@@ -1,27 +1,33 @@
 package com.example.demo.util;
 
-import com.example.demo.model.Invoice;
+import com.example.demo.model.Category;
 import com.example.demo.model.CategorizationRule;
+import com.example.demo.model.Invoice;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class InvoiceCategorizationEngine {
 
-    public String determineCategory(
+    public Category determineCategory(
             Invoice invoice,
             List<CategorizationRule> rules
     ) {
-        if (rules == null || rules.isEmpty()) {
+        if (invoice == null || rules == null) {
             return null;
         }
 
-        String description = invoice.getDescription().toLowerCase();
+        for (CategorizationRule rule : rules) {
+            if (invoice.getDescription() != null &&
+                rule.getKeyword() != null &&
+                invoice.getDescription()
+                        .toLowerCase()
+                        .contains(rule.getKeyword().toLowerCase())) {
 
-        return rules.stream()
-                .filter(r -> description.contains(r.getKeyword().toLowerCase()))
-                .sorted((a, b) -> b.getPriority() - a.getPriority())
-                .map(r -> r.getCategory().getCategoryName())
-                .findFirst()
-                .orElse(null);
+                return rule.getCategory();
+            }
+        }
+        return null;
     }
 }
