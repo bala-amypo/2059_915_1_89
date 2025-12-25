@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-    name = "invoices",
-    uniqueConstraints = @UniqueConstraint(columnNames = {"vendor_id", "invoiceNumber"})
+        name = "invoices",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"vendor_id", "invoiceNumber"})
 )
 public class Invoice {
 
@@ -19,8 +19,11 @@ public class Invoice {
     private Vendor vendor;
 
     private String invoiceNumber;
+
     private Double amount;
+
     private LocalDate invoiceDate;
+
     private String description;
 
     @ManyToOne
@@ -36,72 +39,73 @@ public class Invoice {
         uploadedAt = LocalDateTime.now();
     }
 
-    // getters & setters
-}
-public Long getId() {
-    return id;
-}
+    // ===== GETTERS & SETTERS =====
 
-public void setId(Long id) {
-    this.id = id;
-}
+    public Long getId() {
+        return id;
+    }
 
-public Vendor getVendor() {
-    return vendor;
-}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-public void setVendor(Vendor vendor) {
-    this.vendor = vendor;
-}
+    public Vendor getVendor() {
+        return vendor;
+    }
 
-public String getInvoiceNumber() {
-    return invoiceNumber;
-}
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
 
-public void setInvoiceNumber(String invoiceNumber) {
-    this.invoiceNumber = invoiceNumber;
-}
+    public String getInvoiceNumber() {
+        return invoiceNumber;
+    }
 
-public Double getAmount() {
-    return amount;
-}
+    public void setInvoiceNumber(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
+    }
 
-public void setAmount(Double amount) {
-    this.amount = amount;
-}
+    public Double getAmount() {
+        return amount;
+    }
 
-public LocalDate getInvoiceDate() {
-    return invoiceDate;
-}
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
-public void setInvoiceDate(LocalDate invoiceDate) {
-    this.invoiceDate = invoiceDate;
-}
+    public LocalDate getInvoiceDate() {
+        return invoiceDate;
+    }
 
-public String getDescription() {
-    return description;
-}
+    public void setInvoiceDate(LocalDate invoiceDate) {
+        this.invoiceDate = invoiceDate;
+    }
 
-public void setDescription(String description) {
-    this.description = description;
-}
+    public String getDescription() {
+        return description;
+    }
 
-public Category getCategory() {
-    return category;
-}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-public void setCategory(Category category) {
-    this.category = category;
-}
+    public Category getCategory() {
+        return category;
+    }
 
-public User getUploadedBy() {
-    return uploadedBy;
-}
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
-public void setUploadedBy(User uploadedBy) {
-    this.uploadedBy = uploadedBy;
-}
+    public User getUploadedBy() {
+        return uploadedBy;
+    }
 
-public LocalDateTime getUploadedAt() {
-    return uploadedAt;
+    public void setUploadedBy(User uploadedBy) {
+        this.uploadedBy = uploadedBy;
+    }
+
+    public LocalDateTime getUploadedAt() {
+        return uploadedAt;
+    }
 }

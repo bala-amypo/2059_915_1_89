@@ -7,8 +7,8 @@ import java.util.Set;
 
 @Entity
 @Table(
-    name = "users",
-    uniqueConstraints = @UniqueConstraint(columnNames = "email")
+        name = "users",
+        uniqueConstraints = @UniqueConstraint(columnNames = "email")
 )
 public class User {
 
@@ -29,9 +29,9 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-        name = "user_favorite_vendors",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "vendor_id")
+            name = "user_favorite_vendors",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "vendor_id")
     )
     private Set<Vendor> favoriteVendors = new HashSet<>();
 
@@ -40,48 +40,57 @@ public class User {
         createdAt = LocalDateTime.now();
     }
 
-    // getters & setters
-}
-public Long getId() {
-    return id;
-}
+    // ===== GETTERS & SETTERS =====
 
-public void setId(Long id) {
-    this.id = id;
-}
+    public Long getId() {
+        return id;
+    }
 
-public String getEmail() {
-    return email;
-}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-public void setEmail(String email) {
-    this.email = email;
-}
+    public String getFullName() {
+        return fullName;
+    }
 
-public String getPassword() {
-    return password;
-}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-public void setPassword(String password) {
-    this.password = password;
-}
+    public String getEmail() {
+        return email;
+    }
 
-public String getRole() {
-    return role;
-}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-public void setRole(String role) {
-    this.role = role;
-}
+    public String getPassword() {
+        return password;
+    }
 
-public Set<Vendor> getFavoriteVendors() {
-    return favoriteVendors;
-}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-public void setFavoriteVendors(Set<Vendor> favoriteVendors) {
-    this.favoriteVendors = favoriteVendors;
-}
+    public String getRole() {
+        return role;
+    }
 
-public LocalDateTime getCreatedAt() {
-    return createdAt;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public Set<Vendor> getFavoriteVendors() {
+        return favoriteVendors;
+    }
+
+    public void setFavoriteVendors(Set<Vendor> favoriteVendors) {
+        this.favoriteVendors = favoriteVendors;
+    }
 }
