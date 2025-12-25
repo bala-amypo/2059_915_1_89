@@ -19,7 +19,6 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final UserRepository userRepo;
     private final VendorRepository vendorRepo;
 
-    // ✅ THIS constructor is REQUIRED by tests
     public InvoiceServiceImpl(
             InvoiceRepository invoiceRepo,
             UserRepository userRepo,
@@ -37,7 +36,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Invoice uploadInvoice(Long userId, Long vendorId, Invoice invoice) {
-
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
@@ -58,7 +56,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public List<Invoice> getInvoicesByUser(Long userId) {
-
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
