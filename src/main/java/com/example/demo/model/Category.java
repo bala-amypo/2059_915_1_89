@@ -19,7 +19,7 @@ public class Category {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ---------- GETTERS ----------
+    // ✅ REQUIRED GETTERS
     public Long getId() {
         return id;
     }
@@ -32,7 +32,7 @@ public class Category {
         return createdAt;
     }
 
-    // ---------- SETTERS ----------
+    // ✅ REQUIRED SETTERS
     public void setId(Long id) {
         this.id = id;
     }
