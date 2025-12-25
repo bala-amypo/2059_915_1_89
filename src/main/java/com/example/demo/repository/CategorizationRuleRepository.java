@@ -8,5 +8,6 @@ import java.util.List;
 public interface CategorizationRuleRepository
         extends JpaRepository<CategorizationRule, Long> {
 
-    List<CategorizationRule> findMatchingRulesByDescription(String description);
+    List<CategorizationRule> findByMatchType(String matchType);
+
 }
