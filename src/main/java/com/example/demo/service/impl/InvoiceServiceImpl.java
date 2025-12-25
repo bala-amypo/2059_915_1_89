@@ -15,49 +15,51 @@ import java.util.List;
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
 
-    private final InvoiceRepository invoiceRepo;
-    private final UserRepository userRepo;
-    private final VendorRepository vendorRepo;
+    private final InvoiceRepository invoiceRepository;
+    private final UserRepository userRepository;
+    private final VendorRepository vendorRepository;
 
+    // ⭐ THIS CONSTRUCTOR IS WHAT TESTS EXPECT
     public InvoiceServiceImpl(
-            InvoiceRepository invoiceRepo,
-            UserRepository userRepo,
-            VendorRepository vendorRepo
+            InvoiceRepository invoiceRepository,
+            UserRepository userRepository,
+            VendorRepository vendorRepository
     ) {
-        this.invoiceRepo = invoiceRepo;
-        this.userRepo = userRepo;
-        this.vendorRepo = vendorRepo;
+        this.invoiceRepository = invoiceRepository;
+        this.userRepository = userRepository;
+        this.vendorRepository = vendorRepository;
     }
 
     @Override
     public List<Invoice> getAllInvoices() {
-        return invoiceRepo.findAll();
+        return invoiceRepository.findAll();
     }
 
     @Override
     public Invoice uploadInvoice(Long userId, Long vendorId, Invoice invoice) {
-        User user = userRepo.findById(userId)
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
-        Vendor vendor = vendorRepo.findById(vendorId)
+        Vendor vendor = vendorRepository.findById(vendorId)
                 .orElseThrow(() -> new ResourceNotFoundException("Vendor not found"));
 
         invoice.setUploadedBy(user);
         invoice.setVendor(vendor);
-        return invoiceRepo.save(invoice);
+
+        return invoiceRepository.save(invoice);
     }
 
     @Override
     public Invoice getInvoice(Long id) {
-        return invoiceRepo.findById(id)
+        return invoiceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Invoice not found"));
     }
 
     @Override
     public List<Invoice> getInvoicesByUser(Long userId) {
-        User user = userRepo.findById(userId)
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
-        return invoiceRepo.findByUploadedBy(user);
+        return invoiceRepository.findByUploadedBy(user);
     }
 }
