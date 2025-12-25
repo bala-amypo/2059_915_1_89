@@ -16,6 +16,7 @@ public class CategorizationRule {
     private String keyword;
     private String matchType;
     private Integer priority;
+
     private LocalDateTime createdAt;
 
     @PrePersist
@@ -23,9 +24,12 @@ public class CategorizationRule {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ---------- GETTERS ----------
     public Long getId() {
         return id;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 
     public String getKeyword() {
@@ -44,12 +48,6 @@ public class CategorizationRule {
         return createdAt;
     }
 
-    // 🔴 TESTS EXPECT STRING, NOT Category
-    public String getCategory() {
-        return category != null ? category.getCategoryName() : null;
-    }
-
-    // ---------- SETTERS ----------
     public void setId(Long id) {
         this.id = id;
     }
