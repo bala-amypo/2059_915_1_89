@@ -9,5 +9,4 @@ public interface CategorizationRuleRepository
         extends JpaRepository<CategorizationRule, Long> {
 
     List<CategorizationRule> findByMatchType(String matchType);
-
 }
