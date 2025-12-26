@@ -19,7 +19,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final UserRepository userRepo;
     private final VendorRepository vendorRepo;
 
-    // ✅ EXACT constructor expected by tests
+    // ✅ ONLY constructor tests expect
     public InvoiceServiceImpl(
             InvoiceRepository invoiceRepo,
             UserRepository userRepo,
