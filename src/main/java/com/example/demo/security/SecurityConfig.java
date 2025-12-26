@@ -12,12 +12,23 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+            // Disable CSRF (Swagger + H2 need this)
             .csrf(csrf -> csrf.disable())
+
+            // Explicitly allow Swagger & H2
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+                    "/v3/api-docs/**",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
+                    "/h2-console/**"
+                ).permitAll()
                 .anyRequest().permitAll()
             )
-            .headers(headers -> headers
-                .frameOptions(frame -> frame.disable())
+
+            // Allow H2 console frames
+            .headers(headers ->
+                headers.frameOptions(frame -> frame.disable())
             );
 
         return http.build();
