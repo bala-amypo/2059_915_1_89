@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -7,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(
-    name = "users", // ✅ FIX: avoid reserved keyword "user"
+    name = "users",
     uniqueConstraints = @UniqueConstraint(columnNames = "email")
 )
 public class User {
@@ -24,15 +25,16 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-        name = "user_favorite_vendors", // ✅ explicit join table
+        name = "user_favorite_vendors",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "vendor_id")
     )
+    @JsonIgnore   // ✅ FIX: prevents lazy loading JSON error
     private Set<Vendor> favoriteVendors = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
-        createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     // ===== GETTERS & SETTERS =====
