@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -19,7 +20,6 @@ public class Category {
         this.createdAt = LocalDateTime.now();
     }
 
-    // -------- GETTERS --------
     public Long getId() {
         return id;
     }
@@ -28,12 +28,10 @@ public class Category {
         return categoryName;
     }
 
-    // ✅ REQUIRED BY TESTS
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    // -------- SETTERS --------
     public void setId(Long id) {
         this.id = id;
     }
