@@ -113,9 +113,20 @@
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-surefire-plugin</artifactId>
     <version>3.1.2</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.9.0</version>
+        </dependency>
+    </dependencies>
     <configuration>
         <useModulePath>false</useModulePath>
-        <testNGArtifactName>org.testng:testng</testNGArtifactName>
+        <providers>
+            <provider>
+                <name>testng</name>
+            </provider>
+        </providers>
         <includes>
             <include>**/*Tests.java</include>
         </includes>
